@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
 
-**Slash Claude Code token usage by 40–98%.** Generates a compact codebase index, smart ignore rules, and an optimized `CLAUDE.md` — so Claude navigates straight to the right file instead of reading your entire project.
+**Cut Claude Code token usage by 50–80% per session.** Generates a compact codebase index, smart ignore rules, and an optimized `CLAUDE.md` — so Claude navigates straight to the right file instead of reading 10 files to find one function.
 
 ```
 $ npx tokenmiser init
@@ -78,16 +78,16 @@ A `PreToolUse` hook on `Read` **blocks** full reads of files over ~1,500 lines a
 
 ## Real numbers
 
-Measured on actual projects:
+Index size vs. full repo size, measured on actual projects:
 
-| Project | Language | Files | Without tokenmiser | With tokenmiser | Savings |
+| Project | Language | Files | Full repo | Index only | Index reduction |
 |---|---|---|---|---|---|
 | Go CLI (ghscope) | Go | 60 | ~40.9k tokens | ~758 tokens | **98%** |
 | Next.js website | TypeScript | 37 | ~28.8k tokens | ~541 tokens | **98%** |
 | TUI app (snip) | Python | 51 | ~40.5k tokens | ~566 tokens | **99%** |
-| tokenmiser itself | TypeScript | 23 | ~17.7k tokens | ~349 tokens | **98%** |
+| tokenmiser itself | TypeScript | 36 | ~22.9k tokens | ~452 tokens | **98%** |
 
-*Token counts estimated at ~3.5 chars/token (standard Claude approximation). Actual savings depend on how many files Claude reads per session.*
+The index reduction is how much smaller `CODEBASE_INDEX.md` is vs. reading every file. **Real per-session savings depend on how many files Claude would have read without the index** — typically 5–10 files per task. In practice that's 50–80% fewer tokens per session, compounding across every task in a conversation.
 
 ---
 
