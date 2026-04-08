@@ -5,15 +5,44 @@ import { SymbolCache } from '../utils/cache'
 import { estimateTokens, formatTokens } from './tokenEstimator'
 
 const SOURCE_EXTS = new Set([
-  '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs',
-  '.py', '.go', '.rs', '.java', '.kt', '.swift',
-  '.rb', '.php', '.cpp', '.c', '.h', '.cc',
-  '.cs', '.scala', '.ex', '.exs', '.vue', '.svelte',
+  '.ts',
+  '.tsx',
+  '.js',
+  '.jsx',
+  '.mjs',
+  '.cjs',
+  '.py',
+  '.go',
+  '.rs',
+  '.java',
+  '.kt',
+  '.swift',
+  '.rb',
+  '.php',
+  '.cpp',
+  '.c',
+  '.h',
+  '.cc',
+  '.cs',
+  '.scala',
+  '.ex',
+  '.exs',
+  '.vue',
+  '.svelte',
 ])
 
 const CONFIG_EXTS = new Set([
-  '.json', '.jsonc', '.yaml', '.yml', '.toml', '.ini',
-  '.env', '.env.example', '.env.sample', '.conf', '.config',
+  '.json',
+  '.jsonc',
+  '.yaml',
+  '.yml',
+  '.toml',
+  '.ini',
+  '.env',
+  '.env.example',
+  '.env.sample',
+  '.conf',
+  '.config',
 ])
 
 export interface IndexResult {
@@ -83,7 +112,9 @@ export async function generateIndex(
 
   if (configFiles.length > 0) {
     out += `## Config\n`
-    for (const f of configFiles.slice(0, 30).sort((a, b) => a.relativePath.localeCompare(b.relativePath))) {
+    for (const f of configFiles
+      .slice(0, 30)
+      .sort((a, b) => a.relativePath.localeCompare(b.relativePath))) {
       out += `- \`${f.relativePath}\`\n`
     }
     out += '\n'
@@ -91,7 +122,9 @@ export async function generateIndex(
 
   if (docFiles.length > 0) {
     out += `## Docs\n`
-    for (const f of docFiles.slice(0, 15).sort((a, b) => a.relativePath.localeCompare(b.relativePath))) {
+    for (const f of docFiles
+      .slice(0, 15)
+      .sort((a, b) => a.relativePath.localeCompare(b.relativePath))) {
       out += `- \`${f.relativePath}\`\n`
     }
     out += '\n'

@@ -19,7 +19,11 @@ export async function updateCommand(options: { dir: string; quiet?: boolean }): 
   const { files, totalTokens } = await scanRepo(rootDir)
   cache.prune(new Set(files.map((f) => f.absolutePath)))
 
-  const { content, indexTokens, filesIndexed, fromCache } = await generateIndex(files, rootDir, cache)
+  const { content, indexTokens, filesIndexed, fromCache } = await generateIndex(
+    files,
+    rootDir,
+    cache,
+  )
 
   fs.writeFileSync(path.join(rootDir, 'CODEBASE_INDEX.md'), content, 'utf-8')
   cache.save()

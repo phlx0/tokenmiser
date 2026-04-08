@@ -124,7 +124,10 @@ export function buildClaudeIgnore(detectedLanguages: string[]): string {
   return content
 }
 
-export function writeClaudeIgnore(rootDir: string, languages: string[]): 'created' | 'updated' | 'skipped' {
+export function writeClaudeIgnore(
+  rootDir: string,
+  languages: string[],
+): 'created' | 'updated' | 'skipped' {
   const ignorePath = path.join(rootDir, '.claudeignore')
   const generated = buildClaudeIgnore(languages)
 
@@ -132,11 +135,18 @@ export function writeClaudeIgnore(rootDir: string, languages: string[]): 'create
     const existing = fs.readFileSync(ignorePath, 'utf-8')
     if (existing.includes('tokenmiser')) {
       const userSection = extractUserSection(existing)
-      const final = userSection ? generated + '\n# ── User patterns ─────────────────────────────────────────────────────────\n' + userSection : generated
+      const final = userSection
+        ? generated +
+          '\n# ── User patterns ─────────────────────────────────────────────────────────\n' +
+          userSection
+        : generated
       fs.writeFileSync(ignorePath, final, 'utf-8')
       return 'updated'
     } else {
-      const merged = generated + '\n# ── Existing patterns ─────────────────────────────────────────────────────\n' + existing
+      const merged =
+        generated +
+        '\n# ── Existing patterns ─────────────────────────────────────────────────────\n' +
+        existing
       fs.writeFileSync(ignorePath, merged, 'utf-8')
       return 'updated'
     }

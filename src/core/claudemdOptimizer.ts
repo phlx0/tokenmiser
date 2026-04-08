@@ -48,7 +48,9 @@ export function analyzeClaudeMd(rootDir: string): ClaudeMdAnalysis {
   const suggestions: string[] = []
 
   if (tokens > 3000) {
-    suggestions.push(`CLAUDE.md is ~${formatTokens(tokens)} tokens — trim to under 1,500 for minimum per-session overhead`)
+    suggestions.push(
+      `CLAUDE.md is ~${formatTokens(tokens)} tokens — trim to under 1,500 for minimum per-session overhead`,
+    )
   }
   if (!hasIndexRef) {
     suggestions.push('Add CODEBASE_INDEX.md reference so Claude reads it before exploring files')
@@ -64,7 +66,9 @@ export function analyzeClaudeMd(rootDir: string): ClaudeMdAnalysis {
   return { exists: true, tokens, hasIndexRef, suggestions }
 }
 
-export function ensureIndexInstruction(rootDir: string): 'injected' | 'already_present' | 'created' {
+export function ensureIndexInstruction(
+  rootDir: string,
+): 'injected' | 'already_present' | 'created' {
   const p = path.join(rootDir, 'CLAUDE.md')
 
   if (!fs.existsSync(p)) {
@@ -81,7 +85,8 @@ export function ensureIndexInstruction(rootDir: string): 'injected' | 'already_p
   let updated: string
   if (headingMatch) {
     const headingEnd = headingMatch.index! + headingMatch[0].length
-    updated = content.slice(0, headingEnd) + '\n' + INDEX_INSTRUCTION + '\n' + content.slice(headingEnd)
+    updated =
+      content.slice(0, headingEnd) + '\n' + INDEX_INSTRUCTION + '\n' + content.slice(headingEnd)
   } else {
     updated = INDEX_INSTRUCTION + '\n' + content
   }

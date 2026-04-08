@@ -32,9 +32,8 @@ export async function scanCommand(options: { dir: string }): Promise<void> {
     const barLen = Math.max(1, Math.round(pct * 24))
     const bar = chalk.red('█'.repeat(barLen)) + chalk.dim('░'.repeat(24 - barLen))
     const tokenStr = formatTokens(file.estimatedTokens).padStart(6)
-    const pathStr = file.relativePath.length > 48
-      ? '…' + file.relativePath.slice(-47)
-      : file.relativePath
+    const pathStr =
+      file.relativePath.length > 48 ? '…' + file.relativePath.slice(-47) : file.relativePath
     console.log(`  ${chalk.dim(pathStr.padEnd(50))}${chalk.yellow(tokenStr)}  ${bar}`)
   }
 
@@ -90,11 +89,18 @@ export async function scanCommand(options: { dir: string }): Promise<void> {
     console.log(chalk.bold('  Heavy directories:'))
     for (const [dir, tokens] of hotDirs) {
       const pct = Math.round((tokens / totalTokens) * 100)
-      const isIgnorable = ['generated', 'gen', '__generated__', 'fixtures', 'mocks', 'snapshots'].some(
-        (k) => dir.includes(k),
-      )
+      const isIgnorable = [
+        'generated',
+        'gen',
+        '__generated__',
+        'fixtures',
+        'mocks',
+        'snapshots',
+      ].some((k) => dir.includes(k))
       const hint = isIgnorable ? chalk.yellow(' ← consider adding to .claudeignore') : ''
-      console.log(`  ${chalk.cyan(dir.padEnd(30))} ${chalk.yellow(formatTokens(tokens).padStart(6))}  ${chalk.dim(pct + '%')}${hint}`)
+      console.log(
+        `  ${chalk.cyan(dir.padEnd(30))} ${chalk.yellow(formatTokens(tokens).padStart(6))}  ${chalk.dim(pct + '%')}${hint}`,
+      )
     }
   }
 

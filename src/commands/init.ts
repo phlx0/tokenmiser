@@ -105,14 +105,38 @@ export async function initCommand(options: {
 
   console.log(chalk.bold('  Next steps'))
   console.log()
-  console.log(chalk.dim('  1.') + ' Review ' + chalk.cyan('CODEBASE_INDEX.md') + ' — commit it or add to .gitignore')
-  console.log(chalk.dim('  2.') + ' Review ' + chalk.cyan('.claudeignore') + ' — add project-specific directories')
-  console.log(chalk.dim('  3.') + ' Fill in ' + chalk.cyan('CLAUDE.md') + ' with your project commands and conventions')
-  console.log(chalk.dim('  4.') + ' After code changes, run ' + chalk.white('tokenmiser update') + ' to refresh the index')
+  console.log(
+    chalk.dim('  1.') +
+      ' Review ' +
+      chalk.cyan('CODEBASE_INDEX.md') +
+      ' — commit it or add to .gitignore',
+  )
+  console.log(
+    chalk.dim('  2.') +
+      ' Review ' +
+      chalk.cyan('.claudeignore') +
+      ' — add project-specific directories',
+  )
+  console.log(
+    chalk.dim('  3.') +
+      ' Fill in ' +
+      chalk.cyan('CLAUDE.md') +
+      ' with your project commands and conventions',
+  )
+  console.log(
+    chalk.dim('  4.') +
+      ' After code changes, run ' +
+      chalk.white('tokenmiser update') +
+      ' to refresh the index',
+  )
   console.log()
 
   if (!installHooksFlag) {
-    console.log(chalk.dim('  Tip: run with --hooks to auto-configure Claude Code hooks for live index updates'))
+    console.log(
+      chalk.dim(
+        '  Tip: run with --hooks to auto-configure Claude Code hooks for live index updates',
+      ),
+    )
     console.log()
   }
 

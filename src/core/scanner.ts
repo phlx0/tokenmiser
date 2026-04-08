@@ -65,18 +65,64 @@ const HARD_IGNORE = [
 ]
 
 const TEXT_EXTENSIONS = new Set([
-  '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs',
-  '.py', '.go', '.rs', '.java', '.kt', '.swift',
-  '.rb', '.php', '.cpp', '.c', '.h', '.cc', '.cxx',
-  '.cs', '.scala', '.clj', '.ex', '.exs', '.ml',
-  '.md', '.mdx', '.txt', '.rst',
-  '.json', '.jsonc', '.yaml', '.yml', '.toml', '.ini',
-  '.env', '.env.example', '.env.sample',
-  '.html', '.css', '.scss', '.sass', '.less',
-  '.sql', '.graphql', '.gql', '.proto',
-  '.sh', '.bash', '.zsh', '.fish',
-  '.dockerfile', '.conf', '.config', '.xml',
-  '.vue', '.svelte', '.astro',
+  '.ts',
+  '.tsx',
+  '.js',
+  '.jsx',
+  '.mjs',
+  '.cjs',
+  '.py',
+  '.go',
+  '.rs',
+  '.java',
+  '.kt',
+  '.swift',
+  '.rb',
+  '.php',
+  '.cpp',
+  '.c',
+  '.h',
+  '.cc',
+  '.cxx',
+  '.cs',
+  '.scala',
+  '.clj',
+  '.ex',
+  '.exs',
+  '.ml',
+  '.md',
+  '.mdx',
+  '.txt',
+  '.rst',
+  '.json',
+  '.jsonc',
+  '.yaml',
+  '.yml',
+  '.toml',
+  '.ini',
+  '.env',
+  '.env.example',
+  '.env.sample',
+  '.html',
+  '.css',
+  '.scss',
+  '.sass',
+  '.less',
+  '.sql',
+  '.graphql',
+  '.gql',
+  '.proto',
+  '.sh',
+  '.bash',
+  '.zsh',
+  '.fish',
+  '.dockerfile',
+  '.conf',
+  '.config',
+  '.xml',
+  '.vue',
+  '.svelte',
+  '.astro',
 ])
 
 const LANGUAGE_EXTENSIONS: Record<string, string[]> = {
@@ -101,8 +147,7 @@ function buildIgnore(rootDir: string): Ignore {
     if (fs.existsSync(p)) {
       try {
         ig.add(fs.readFileSync(p, 'utf-8'))
-      } catch {
-      }
+      } catch {}
     }
   }
 
