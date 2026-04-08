@@ -60,10 +60,13 @@ Edit `src/core/symbolExtractor.ts`:
 ## Testing
 
 ```bash
-# Run on this repo
+# Unit tests (vitest)
+npm test
+
+# Smoke test on this repo
 node dist/index.js init
 node dist/index.js scan
 node dist/index.js update
 ```
 
-There's no automated test suite yet — contributions welcome.
+Tests live in `tests/`. The suite covers `tokenEstimator`, `symbolExtractor` (all supported languages), and `ignoreGenerator`. New language extractors should include tests in `tests/symbolExtractor.test.ts`.

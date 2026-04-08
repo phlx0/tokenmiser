@@ -163,8 +163,7 @@ your-project/
 ├── .claude/
 │   └── settings.json         ← hook config
 └── .tokenmiser/
-    ├── cache.json            ← add to .gitignore
-    └── hook-read.js          ← large-file read guard
+    └── cache.json            ← add to .gitignore
 ```
 
 Add `.tokenmiser/` to your `.gitignore`. Commit everything else.
