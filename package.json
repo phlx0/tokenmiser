@@ -1,0 +1,57 @@
+{
+  "name": "tokenmiser",
+  "version": "1.0.0",
+  "description": "Slash Claude Code token usage by 40–70%. Generates a compact codebase index, smart ignore rules, and optimized CLAUDE.md — so Claude navigates straight to the right file instead of reading everything.",
+  "main": "dist/index.js",
+  "bin": {
+    "tokenmiser": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "anthropic",
+    "tokens",
+    "context",
+    "token-optimizer",
+    "ai",
+    "developer-tools",
+    "codebase-index"
+  ],
+  "author": "phlx0",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "glob": "^10.4.5",
+    "ignore": "^5.3.2",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phlx0/tokenmiser.git"
+  },
+  "homepage": "https://github.com/phlx0/tokenmiser#readme",
+  "bugs": {
+    "url": "https://github.com/phlx0/tokenmiser/issues"
+  }
+}
